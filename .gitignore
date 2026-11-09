@@ -1,0 +1,14 @@
+.env
+data/
+node_modules/
+*.log
+test-results/
+__pycache__/
+*.py[cod]
+.venv/
+
+# Local environment variants and credentials
+.env.*
+!.env.example
+*.pem
+*.key

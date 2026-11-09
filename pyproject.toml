@@ -1,0 +1,6 @@
+[project]
+name = "knowledge-bridge"
+version = "0.2.0"
+description = "知桥：Python 学习智能体后端"
+requires-python = ">=3.11"
+dependencies = []

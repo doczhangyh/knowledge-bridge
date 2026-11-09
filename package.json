@@ -1,0 +1,17 @@
+{
+  "name": "knowledge-bridge",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "description": "知桥：主智能体诊断、搜索智能体检索、证据驱动的学习辅导",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "start": "python -m server",
+    "dev": "python -m server",
+    "test": "python -m unittest discover -s tests -p \"test_*.py\" -v",
+    "check": "python -m compileall -q server tests && node --check public/app.js",
+    "test:ui": "node scripts/ui-smoke.mjs"
+  }
+}

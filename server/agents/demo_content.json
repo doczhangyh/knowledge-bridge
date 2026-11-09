@@ -1,0 +1,123 @@
+{
+  "plan": {
+    "goal": "用一个小例子理解函数返回与递归的逐层计算",
+    "learningPath": {
+      "currentUnderstanding": "尚未确认，先从普通函数的返回过程检查。",
+      "targetUnderstanding": "能追踪递归每一层的返回值。",
+      "missingLink": "内层返回值如何交回调用位置，继续外层尚未完成的计算。",
+      "basis": "固定演示路径；真实模式会根据用户当前认识判断。",
+      "nextMove": "clarify"
+    },
+    "queries": [
+      "Python 函数 return 局部变量 官方文档"
+    ],
+    "gaps": [
+      {
+        "id": "return-flow",
+        "title": "函数返回后，程序继续到哪里",
+        "reason": "先用普通函数调用检查，再决定是否需要补充。演示脚本仅覆盖这条路径。"
+      },
+      {
+        "id": "recursive-return",
+        "title": "递归返回值如何逐层组合",
+        "reason": "需要一次未给答案的变式验证，不能只凭“懂了”判断。"
+      }
+    ]
+  },
+  "cases": {
+    "first": {
+      "reply": "我们先把问题缩小：递归里的“返回”，和普通函数的返回遵守同一条规则。函数算完后，把结果交回调用它的位置，外面的计算接着继续。\n\n先用一个普通函数确认这一点，再进入递归。右侧是暂时的缺口假设，还不是对你能力的结论。\n\n当前为本地演示：只运行固定的函数与递归教学路径，任意主题的诊断需要配置模型。",
+      "focusId": "return-flow",
+      "check": {
+        "skillId": "return-flow",
+        "kind": "diagnostic",
+        "question": "先看普通调用：\n\n```python\ndef add_one(x):\n    return x + 1\n\ny = add_one(2)\nprint(y * 2)\n```\n\n最终打印什么？请顺便说说 add_one 返回后，程序接着做了什么。",
+        "rubric": "输出 6；add_one(2) 返回 3，赋给 y，然后执行 print(y*2)。"
+      },
+      "suggestions": [
+        "给我一个提示",
+        "换个例子",
+        "回到原问题"
+      ],
+      "sourceIds": []
+    },
+    "transfer": {
+      "reply": "你已经把普通函数的返回过程接上了。递归也是一样，只是调用者恰好也是这个函数。\n\n例如 g(0)=2，g(1)=g(0)+3：先得到内层的 2，再回到外层完成 +3。每一层都保留着自己还没做完的操作。\n\n现在换一个不同的例子，检查你能否独立追踪。",
+      "focusId": "recursive-return",
+      "check": {
+        "skillId": "recursive-return",
+        "kind": "transfer",
+        "question": "换一个没有展示过答案的小例子：\n\n```python\ndef f(n):\n    if n == 0:\n        return 1\n    return f(n - 1) + 2\n\nprint(f(2))\n```\n\n会打印什么？请写出 f(0)、f(1)、f(2) 的返回过程。",
+        "rubric": "必须说明 f(0)=1，f(1)=3，f(2)=5；最终打印 5。"
+      },
+      "suggestions": [
+        "给我一个提示",
+        "换个例子",
+        "回到原问题"
+      ],
+      "sourceIds": []
+    },
+    "independent": {
+      "reply": "这次你独立给出了每一层的返回值，已经有证据说明：你能在这个例子里追踪递归返回。右侧记录的是“当次独立完成”，并不代表已经长期掌握全部递归。\n\n你可以回看证据，或新建一个学习主题。演示路径到这里结束，继续回答同一题不会新增独立验证。",
+      "focusId": "recursive-return",
+      "check": null,
+      "suggestions": [],
+      "sourceIds": []
+    },
+    "assisted": {
+      "reply": "这次你在提示后完成了逐层计算，记录为“帮助下完成”。独立完成需要另外一道未提示的新题。演示路径到这里结束；真实模式可以继续生成变式。",
+      "focusId": "recursive-return",
+      "check": null,
+      "suggestions": [],
+      "sourceIds": []
+    },
+    "hint_first": {
+      "reply": "先只看 add_one(2)：把 x 换成 2，算出 x + 1。这个结果回到等号右边，随后赋给 y。最后再执行 print 中的乘法。\n\n请按“调用 → 返回 → 赋值 → 继续运算”走一遍。这次已经使用提示，完成后会按帮助下完成记录。",
+      "focusId": "return-flow",
+      "check": {
+        "skillId": "return-flow",
+        "kind": "diagnostic",
+        "question": "先看普通调用：\n\n```python\ndef add_one(x):\n    return x + 1\n\ny = add_one(2)\nprint(y * 2)\n```\n\n最终打印什么？请顺便说说 add_one 返回后，程序接着做了什么。",
+        "rubric": "输出 6；add_one(2) 返回 3，赋给 y，然后执行 print(y*2)。"
+      },
+      "suggestions": [
+        "给我一个提示",
+        "换个例子",
+        "回到原问题"
+      ],
+      "sourceIds": []
+    },
+    "hint_transfer": {
+      "reply": "从最内层开始：n 等于 0 时会直接返回。把这个值填回上一层的 f(n - 1)，再完成这一层的 +2，最后再回到最外层。\n\n别把每一层的 +2 丢掉。你可以写三行算式；这次属于帮助下练习。",
+      "focusId": "recursive-return",
+      "check": {
+        "skillId": "recursive-return",
+        "kind": "transfer",
+        "question": "换一个没有展示过答案的小例子：\n\n```python\ndef f(n):\n    if n == 0:\n        return 1\n    return f(n - 1) + 2\n\nprint(f(2))\n```\n\n会打印什么？请写出 f(0)、f(1)、f(2) 的返回过程。",
+        "rubric": "必须说明 f(0)=1，f(1)=3，f(2)=5；最终打印 5。"
+      },
+      "suggestions": [
+        "给我一个提示",
+        "换个例子",
+        "回到原问题"
+      ],
+      "sourceIds": []
+    },
+    "unclear": {
+      "reply": "我暂时不能根据这段回答确认你接上了哪一步。演示模式只支持有限的规则识别，不会把未匹配的表达直接标成错误。\n\n请写出关键的返回或赋值过程，也可以点击“给我一个提示”。真实模式支持更灵活的表达分析。",
+      "focusId": "return-flow",
+      "check": {
+        "skillId": "return-flow",
+        "kind": "diagnostic",
+        "question": "先看普通调用：\n\n```python\ndef add_one(x):\n    return x + 1\n\ny = add_one(2)\nprint(y * 2)\n```\n\n最终打印什么？请顺便说说 add_one 返回后，程序接着做了什么。",
+        "rubric": "输出 6；add_one(2) 返回 3，赋给 y，然后执行 print(y*2)。"
+      },
+      "suggestions": [
+        "给我一个提示",
+        "换个例子",
+        "回到原问题"
+      ],
+      "sourceIds": []
+    }
+  }
+}
